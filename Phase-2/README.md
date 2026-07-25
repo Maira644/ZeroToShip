@@ -1,3 +1,19 @@
 # Phase 2
 
-Work will be added here.
+## Completed
+
+- FastAPI backend setup
+- PostgreSQL connection
+- SQLAlchemy ORM models
+- Password hashing using bcrypt
+- User Registration API
+- Duplicate email validation
+
+## Technologies Used
+
+- FastAPI
+- PostgreSQL
+- SQLAlchemy
+- Passlib
+- bcrypt
+- Pydantic
