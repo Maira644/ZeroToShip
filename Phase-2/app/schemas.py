@@ -24,3 +24,36 @@ class UserResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
+
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class ProjectCreate(BaseModel):
+    title: str
+    description: str
+    required_skills: list[str]
+    status: str
+
+
+class ProjectResponse(BaseModel):
+    project_id: int
+    creator_id: int
+    title: str
+    description: str
+    required_skills: list[str]
+    status: str
+
+    class Config:
+        from_attributes = True
+
+class ProjectUpdate(BaseModel):
+    title: str
+    description: str
+    required_skills: list[str]
+    status: str
