@@ -6,7 +6,7 @@ from app import models, schemas
 from fastapi import APIRouter, Depends, HTTPException
 
 router = APIRouter(
-    prefix="/projects",
+    prefix="/api/projects",
     tags=["Projects"]
 )
 

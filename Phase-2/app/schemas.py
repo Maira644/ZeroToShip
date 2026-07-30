@@ -55,3 +55,16 @@ class ProjectResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+class ApplicationCreate(BaseModel):
+    project_id: int
+
+
+class ApplicationResponse(BaseModel):
+    application_id: int
+    project_id: int
+    applicant_id: int
+    status: str
+
+    class Config:
+        from_attributes = True

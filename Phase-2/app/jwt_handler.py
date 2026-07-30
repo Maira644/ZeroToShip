@@ -1,14 +1,18 @@
+import os
 from datetime import datetime, timedelta
+
+from dotenv import load_dotenv
 from jose import jwt
 
-# Secret key used to sign JWT tokens
-SECRET_KEY = "your_super_secret_key_change_this_later"
+# Load environment variables
+load_dotenv()
 
-# Algorithm used for encryption
-ALGORITHM = "HS256"
-
-# Token expiration time (30 minutes)
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+# Read JWT configuration from .env
+SECRET_KEY = os.getenv("SECRET_KEY")
+ALGORITHM = os.getenv("ALGORITHM")
+ACCESS_TOKEN_EXPIRE_MINUTES = int(
+    os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES")
+)
 
 
 def create_access_token(data: dict):
