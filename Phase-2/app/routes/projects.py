@@ -1,4 +1,3 @@
-from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from app.database import get_db
@@ -31,6 +30,42 @@ def create_project(
     db.refresh(new_project)
 
     return new_project
+
+from typing import Optional
+
+
+@router.get("/", response_model=list[schemas.ProjectResponse])
+def get_all_projects(
+    skill: Optional[str] = None,
+    db: Session = Depends(get_db)
+):
+    query = db.query(models.Project)
+
+    if skill:
+        query = query.filter(
+            models.Project.required_skills.any(skill)
+        )
+
+    return query.all()
+
+@router.get("/{project_id}", response_model=schemas.ProjectResponse)
+def get_project_by_id(
+    project_id: int,
+    db: Session = Depends(get_db)
+):
+    project = (
+        db.query(models.Project)
+        .filter(models.Project.project_id == project_id)
+        .first()
+    )
+
+    if not project:
+        raise HTTPException(
+            status_code=404,
+            detail="Project not found."
+        )
+
+    return project
 
 @router.put("/{project_id}", response_model=schemas.ProjectResponse)
 def update_project(
